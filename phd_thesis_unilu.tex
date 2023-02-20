@@ -1,0 +1,226 @@
+\documentclass[11pt,a4paper]{report}
+%Packages used
+%\usepackage{setspace}
+%\usepackage{helvet}
+%lipsum
+\usepackage{lipsum}
+%Loading images
+\usepackage{graphicx}
+%For lists
+\usepackage{enumitem}
+\usepackage{titlesec}
+%For acronym
+\usepackage{acro}
+% alignment
+\usepackage[document]{ragged2e}
+%Margins
+\usepackage[left=3cm, right=2.5cm]{geometry}
+%hyperlinks
+\usepackage{hyperref}
+
+%No indent
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+\newcommand{\unchapter}[1]{%
+  \begingroup
+  \let\@makechapterhead\@gobble % make \@makechapterhead do nothing
+  \chapter{#1}
+  \endgroup
+}
+\makeatother
+
+% title chapter format
+\titleformat{\chapter}[display]
+  {\normalfont\LARGE\raggedleft}
+  {\chaptertitlename \ \thechapter }
+  {0pt}
+  {\Huge\bfseries} [\hrulefill  \vspace{-1.0cm}]
+ 
+%Setting line spacing 1.5
+%\setstretch{1.5}
+%Helvet and Arial are both commercial fonts, therefore it is preferred to use an open-source font that closely resembles Arial. The helvet package uses Nimbus Sans font (Helvetica clone) which closely resembles Arial. 
+%\renewcommand{\familydefault}{\sfdefault}
+
+%----- list of acronyms -----
+\input{sections/acro_list}
+
+\begin{document}
+
+%Useful formatting:
+% \\ for newline without paragraph
+% \par for newline with paragraph
+%To import and generate code for tables you may, for example, use: https://www.tablesgenerator.com/
+
+\pagenumbering{roman} 
+\thispagestyle{empty}
+\newgeometry{left=3cm,bottom=0.1cm}
+
+%----- first page -----
+%Do not alter this page, only fill out the required fields
+\begin{figure}
+\vspace{-1.5cm}
+\includegraphics[width=0.15\columnwidth]{logo/University_of_Luxembourg_logo_(fr).png}
+\centering
+\end{figure}
+
+\begin {center}
+\footnotesize{PhD-No.....XX}\\
+%\vspace{0.4cm}
+\footnotesize{The Faculty of Science, Technology and Medicine}\\
+\vspace{1.0cm}
+\Large{DISSERTATION}\\
+\vspace{1.0cm}
+\normalsize{Presented on ..... in Luxembourg}\\
+\vspace{0.25cm}
+\normalsize{to obtain the degree of}\\
+\vspace{1.0cm}
+\Large{DOCTEUR DE L ́UNIVERSITÉ DU LUXEMBOURG}\\
+\vspace{0.5cm}
+\Large{EN PHYSIQUE}\\
+\vspace{0.5cm}
+by\\
+\vspace{0.5cm}
+\Large{Author name LAST NAME}\\
+\vspace{0.25cm}
+\normalsize{Born on ...... in xxxx (country)}\\
+\vspace{1.5cm}
+\Large{THESIS TITLE IN CAPITAL LETTERS}
+
+\raggedright
+\vspace{1.5cm}
+\Large{Dissertation defence committee}\\
+\vspace{0.25cm}
+\normalsize{ dissertation supervisor}\\
+\textit{Professor, Université du Luxembourg}\\
+\vspace{0.25cm}
+\normalsize{ committee}\\
+\textit{Profesor, affilitiaon}\\
+\vspace{0.25cm}
+\normalsize{ committee}\\
+\textit{Profesor, affilitiaon}\\
+\vspace{0.25cm}
+\normalsize{ committee}\\
+\textit{Profesor, affilitiaon}\\
+\vspace{0.25cm}
+\normalsize{ committee}\\
+\textit{Profesor, affilitiaon}\\
+\vspace{0.25cm}
+
+
+\end{center}
+
+\newpage
+\restoregeometry
+
+\thispagestyle{empty}
+
+
+%----- empty -----
+\newpage \ \newpage
+
+%----- Dedications -----
+\newpage
+\begin{center}
+\vspace*{\fill}
+\raggedleft
+\textit{Dedications (optional)}
+\end{center}
+\vspace*{\fill}
+\newpage
+
+%----- empty -----
+\newpage \ \newpage
+
+% Abstract
+\chapter*{Abstract}
+\justifying
+% your abstract here
+\input{sections/abstract}
+\newpage
+
+%----- empty -----
+\newpage \ \newpage
+
+%----- preface -----
+\chapter*{Preface}
+\justifying
+\input{sections/preface}
+\newpage
+
+%----- empty -----
+\newpage \ \newpage
+
+%----- table of contents -----
+\renewcommand{\baselinestretch}{0.5}\normalsize
+\tableofcontents
+\renewcommand{\baselinestretch}{1.0}\normalsize
+
+%----- empty -----
+\newpage \ \newpage
+
+%----- list of figures -----
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures\newpage
+
+%----- empty -----
+\newpage \ \newpage
+
+%----- list of tables -----
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables \newpage
+
+%----- empty -----
+\newpage \ \newpage
+
+%----- list of abbreviations -----
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\chapter*{List of Abbreviations}
+\printacronyms[name=] \newpage
+%----- empty -----
+\newpage \ \newpage
+
+%----- list of symbols -----
+\addcontentsline{toc}{chapter}{List of Symbols and Notation}
+\chapter*{List of Symbols and Notation}
+\input{sections/symbol_list} \newpage
+
+%----- empty -----
+\newpage \ \newpage
+
+
+\pagenumbering{arabic} 
+\setcounter{page}{1}
+
+%----- introduction -----
+\chapter{Introduction}
+\input{sections/introduction}
+
+%----- empty -----
+\newpage \ \newpage
+
+%----- chapter 2 -----
+\chapter{Name of chapter 2}
+\input{sections/chapter2}
+
+%----- empty -----
+\newpage \ \newpage
+
+%----- References -----
+\newpage
+\addcontentsline{toc}{chapter}{References}
+\chapter*{References}
+\bibliography{thesis_references.bib}
+\bibliographystyle{plain}
+%\printbibliography[heading=none]
+
+%----- empty -----
+\newpage \ \newpage
+
+%----- appendix -----
+\newpage
+\addcontentsline{toc}{chapter}{Appendices}
+\chapter*{Appendices}
+\input{sections/appendix1}
+
+\end{document}
