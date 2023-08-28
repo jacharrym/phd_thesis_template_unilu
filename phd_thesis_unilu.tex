@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{report}
+\documentclass[12pt,a4paper]{book}
 %Packages used
 %\usepackage{setspace}
 %\usepackage{helvet}
@@ -12,15 +12,42 @@
 %For acronym
 \usepackage{acro}
 % alignment
-\usepackage[document]{ragged2e}
+%\usepackage[document]{ragged2e}
 %Margins
 \usepackage[left=3cm, right=2.5cm]{geometry}
 %hyperlinks
-\usepackage{hyperref}
-
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage[utf8]{inputenc}
+%fonts
+\usepackage[T1]{fontenc}
+%\usepackage{kpfonts}%  for math
+\usepackage{amsfonts}%  for math
+\usepackage{libertine}%  serif and sans serif
+\usepackage[scaled=0.85]{beramono}%% mono
+\usepackage[version=3]{mhchem} % chem formulas
+\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{bigstrut}
+\usepackage{bm}
+\usepackage{array}
+%\usepackage{ragged2e}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{float}
+\usepackage{amssymb}
 %No indent
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{1em}
+\usepackage[labelfont=bf]{caption}
+\usepackage{parskip}
+\usepackage{alphabeta}
+
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{1em}
+%\usepackage[style=nature]{biblatex}
+%\usepackage[style=naturemagdoi]{biblatex}
+%\addbibresource{thesis_references.bib}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+%\newcolumntype{C}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
 \newcommand{\unchapter}[1]{%
   \begingroup
@@ -32,10 +59,13 @@
 
 % title chapter format
 \titleformat{\chapter}[display]
-  {\normalfont\LARGE\raggedleft}
-  {\chaptertitlename \ \thechapter }
+  {
+  \normalfont\LARGE%\raggedleft}
+}
+  {\hspace*{\fill} \chaptertitlename \ \thechapter }
   {0pt}
-  {\Huge\bfseries} [\hrulefill  \vspace{-1.0cm}]
+  {\hspace*{\fill} \Huge\bfseries} [\hrulefill  \vspace{-1.0cm}]
+
  
 %Setting line spacing 1.5
 %\setstretch{1.5}
@@ -44,6 +74,7 @@
 
 %----- list of acronyms -----
 \input{sections/acro_list}
+
 
 \begin{document}
 
@@ -64,50 +95,49 @@
 \centering
 \end{figure}
 
-\begin {center}
-\footnotesize{PhD-No.....XX}\\
+\begin{center}
+\footnotesize{PhD-No PhD-FSTM-20xx-xxx }\\
 %\vspace{0.4cm}
 \footnotesize{The Faculty of Science, Technology and Medicine}\\
 \vspace{1.0cm}
 \Large{DISSERTATION}\\
 \vspace{1.0cm}
-\normalsize{Presented on ..... in Luxembourg}\\
+\normalsize{Presented on xx/xx/20xx in Luxembourg}\\
 \vspace{0.25cm}
 \normalsize{to obtain the degree of}\\
 \vspace{1.0cm}
-\Large{DOCTEUR DE L ́UNIVERSITÉ DU LUXEMBOURG}\\
+\Large{DOCTEUR DE L'UNIVERSITÉ DU LUXEMBOURG}\\
 \vspace{0.5cm}
 \Large{EN PHYSIQUE}\\
 \vspace{0.5cm}
 by\\
 \vspace{0.5cm}
-\Large{Author name LAST NAME}\\
+\Large{First name LAST NAME}\\
 \vspace{0.25cm}
-\normalsize{Born on ...... in xxxx (country)}\\
+\normalsize{Born on xx xxxx xxxx in City (Country)}\\
 \vspace{1.5cm}
-\Large{THESIS TITLE IN CAPITAL LETTERS}
+\Large{THESIS TITLE}
 
-\raggedright
+{\raggedright
 \vspace{1.5cm}
-\Large{Dissertation defence committee}\\
+\Large{Dissertation defense committee}\\
 \vspace{0.25cm}
-\normalsize{ dissertation supervisor}\\
-\textit{Professor, Université du Luxembourg}\\
+\normalsize{Dr. First Name Last name, supervisor}\\
+\textit{Professor, University of Luxembourg}\\
 \vspace{0.25cm}
-\normalsize{ committee}\\
-\textit{Profesor, affilitiaon}\\
+\normalsize{Dr. First Name Last Name, Chairman }\\
+\textit{Professor, University of Luxembourg}\\
 \vspace{0.25cm}
-\normalsize{ committee}\\
-\textit{Profesor, affilitiaon}\\
+\normalsize{Dr. First Name Last Name, Vice-Chairman}\\
+\textit{Professor, university}\\
 \vspace{0.25cm}
-\normalsize{ committee}\\
-\textit{Profesor, affilitiaon}\\
+\normalsize{Dr. First Name Last name}\\
+\textit{Professor, university}\\
 \vspace{0.25cm}
-\normalsize{ committee}\\
-\textit{Profesor, affilitiaon}\\
+\normalsize{Dr. First Name Last name}\\
+\textit{Professor, university}\\
 \vspace{0.25cm}
-
-
+}
 \end{center}
 
 \newpage
@@ -124,7 +154,9 @@ by\\
 \begin{center}
 \vspace*{\fill}
 \raggedleft
-\textit{Dedications (optional)}
+\textit{
+Optional
+}
 \end{center}
 \vspace*{\fill}
 \newpage
@@ -132,21 +164,32 @@ by\\
 %----- empty -----
 \newpage \ \newpage
 
+%\justifying
+
 % Abstract
 \chapter*{Abstract}
-\justifying
+\addcontentsline{toc}{chapter}{Abstract}
 % your abstract here
 \input{sections/abstract}
-\newpage
+\markboth{}{} %end chapter
+
+%----- empty -----
+\newpage \ \newpage
+
+\chapter*{Acknowledgments}
+\addcontentsline{toc}{chapter}{Acknowledgments}
+% your abstract here
+\input{sections/acknowledgments}
+\markboth{}{} %end chapter
 
 %----- empty -----
 \newpage \ \newpage
 
 %----- preface -----
 \chapter*{Preface}
-\justifying
+\addcontentsline{toc}{chapter}{Preface}
 \input{sections/preface}
-\newpage
+\markboth{}{} %end chapter
 
 %----- empty -----
 \newpage \ \newpage
@@ -160,29 +203,33 @@ by\\
 \newpage \ \newpage
 
 %----- list of figures -----
-\addcontentsline{toc}{chapter}{List of Figures}
+%\chapter*{List of Figures}
 \listoffigures\newpage
+\addcontentsline{toc}{chapter}{List of Figures}
+\markboth{}{} %end chapter
 
 %----- empty -----
 \newpage \ \newpage
 
 %----- list of tables -----
-\addcontentsline{toc}{chapter}{List of Tables}
+%\chapter*{List of Tables}
 \listoftables \newpage
+\addcontentsline{toc}{chapter}{List of Tables}
+\markboth{}{} %end chapter
 
 %----- empty -----
 \newpage \ \newpage
 
 %----- list of abbreviations -----
-\addcontentsline{toc}{chapter}{List of Abbreviations}
 \chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
 \printacronyms[name=] \newpage
 %----- empty -----
 \newpage \ \newpage
 
 %----- list of symbols -----
-\addcontentsline{toc}{chapter}{List of Symbols and Notation}
 \chapter*{List of Symbols and Notation}
+\addcontentsline{toc}{chapter}{List of Symbols and Notation}
 \input{sections/symbol_list} \newpage
 
 %----- empty -----
@@ -194,33 +241,55 @@ by\\
 
 %----- introduction -----
 \chapter{Introduction}
-\input{sections/introduction}
-
+\input{sections/intro/introduction}
+\label{intro}
 %----- empty -----
 \newpage \ \newpage
 
 %----- chapter 2 -----
-\chapter{Name of chapter 2}
-\input{sections/chapter2}
-
+\chapter{Theoretical Background}
+\label{chapter2}
+\input{sections/chapter2/chapter2}
 %----- empty -----
 \newpage \ \newpage
 
-%----- References -----
-\newpage
-\addcontentsline{toc}{chapter}{References}
-\chapter*{References}
+%----- chapter 3 -----
+\chapter{Title 3}
+\label{chapter3}
+\input{sections/chapter3/chapter3}
+%----- empty -----
+\newpage \ \newpage
+
+%----- chapter conclu -----
+{\chapter{Summary and Outlook}
+\label{conclusions}
+\input{sections/conclusions/conclusions}
+\markboth{}{} %end chapter
+%----- empty -----
+\newpage \ \newpage
+}
+ 
+{%----- appendix -----
+\chapter*{Appendix A: }
+\addcontentsline{toc}{chapter}{Appendix A: }
+\input{sections/appendix/appendixA/appendixA}
+\markboth{}{} %end chapter
+%----- empty -----
+\newpage \ \newpage
+}
+
+
+{%----- References -----
+%\chapter*{Bibliography}
 \bibliography{thesis_references.bib}
-\bibliographystyle{plain}
+\addcontentsline{toc}{chapter}{Bibliography}
+%\bibliographystyle{plain}
+\bibliographystyle{naturemagdoi}
 %\printbibliography[heading=none]
-
 %----- empty -----
 \newpage \ \newpage
+}
 
-%----- appendix -----
-\newpage
-\addcontentsline{toc}{chapter}{Appendices}
-\chapter*{Appendices}
-\input{sections/appendix1}
+
 
 \end{document}

@@ -11,3 +11,5 @@ rm *log
 rm *lot
 rm *out
 rm *toc
+rm *bcf
+rm *xml
